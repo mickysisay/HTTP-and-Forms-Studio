@@ -1,0 +1,50 @@
+<!doctype html>
+
+<head>
+	<meta charset="utf-8">
+	<script>
+		// TODO: create a handler
+		let searchEngine ={
+		google : 'https://www.google.com/search',
+		duckDuckGo : 'https://duckduckgo.com/',
+		bing : 'https://www.bing.com/search',
+		ask : 'https://www.ask.com/web'	
+		};
+    window.addEventListener("load", function(){
+        // TODO: register the handler
+		
+	document.querySelector('form').addEventListener('submit',function(e){
+	let whatSearch =document.getElementsByName('engine');
+	 let whatUse;
+	   for(let i=0;i<whatSearch.length;i++){
+		   if(whatSearch[i].checked){
+			   whatUse = whatSearch[i].value;
+			   break;
+		   }
+	   }
+	   let names = document.querySelector('input[name=q]').value;
+	   if(names===''){
+		e.preventDefault();
+		   window.alert('tf you wanna search');
+	   }
+      
+		  this.setAttribute('action',searchEngine[whatUse]);
+	  
+	});	
+		
+    });
+	</script>
+</head>
+
+<body>
+
+	<form id="searchForm" method='GET'>
+		<label>What to search <input name='q' type='text'/></label>
+		<label>Google <input type='radio' name='engine' value='google' checked='checked'></label>
+		<label>DuckDuckGo<input type='radio' name='engine' value='duckDuckGo'></label>
+		<label>Bing<input type='radio' name='engine' value='bing'></label>
+		<label>Ask<input type='radio' name='engine' value='ask'></label>
+    <!-- TODO: add form elements --><button value='Go!'>Go!</button>
+	</form>
+
+</body>
