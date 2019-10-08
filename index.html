@@ -12,7 +12,31 @@
 		};
     window.addEventListener("load", function(){
         // TODO: register the handler
-		
+	
+	window.addEventListener("click",(e)=>{
+	let int1;
+	let int2;
+		if(document.querySelector("input[name=q]").contains(e.target)){
+			let size=Number(document.querySelector("input[name=q]").size) ;	
+		 int1 = setInterval(()=>{
+			if(size<=30){
+				size++;
+				document.querySelector("input[name=q]").size = size;
+			}else{
+			 clearInterval(int1);	
+			}
+		},20)
+		}else{
+		 int2 = setInterval(()=>{
+			
+			if(document.querySelector("input[name=q]").size>20){
+			document.querySelector("input[name=q]").size= Number(document.querySelector("input[name=q]").size) - 1;
+			}else{
+			 clearInterval(int2);	
+			}
+		},20)
+		}
+	});
 	document.querySelector('form').addEventListener('submit',function(e){
 	let whatSearch =document.getElementsByName('engine');
 	 let whatUse;
@@ -23,9 +47,9 @@
 		   }
 	   }
 	   let names = document.querySelector('input[name=q]').value;
-	   if(names===''){
+	   if(names.trim()===''){
 		e.preventDefault();
-		   window.alert('tf you wanna search');
+		   window.alert('please enter something to search');
 	   }
       
 		  this.setAttribute('action',searchEngine[whatUse]);
@@ -34,17 +58,38 @@
 		
     });
 	</script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<style>
+	  .a {
+		margin-top:30px;  
+		width : 400px;  
+		padding : 40px 40px 40px 40px;
+        border : 5px solid white;
+		border-radius : 20px;
+		background-color :grey;
+		font-family:"Courier New";
+	  }
+	  label {
+		  padding-top:20px;
+	  }
+	  body{
+       background-color:cyan;
+	  }
+	  label:hover{
+		  font-weight: bold;
+	  }
+	</style>
 </head>
 
 <body>
-
+   <div class="container text-center a">
 	<form id="searchForm" method='GET'>
-		<label>What to search <input name='q' type='text'/></label>
-		<label>Google <input type='radio' name='engine' value='google' checked='checked'></label>
-		<label>DuckDuckGo<input type='radio' name='engine' value='duckDuckGo'></label>
-		<label>Bing<input type='radio' name='engine' value='bing'></label>
-		<label>Ask<input type='radio' name='engine' value='ask'></label>
-    <!-- TODO: add form elements --><button value='Go!'>Go!</button>
+		<label>What to search <input name='q' type='text'/></label><br>
+		<label>Google  <input type='radio' name='engine' value='google' checked='checked'></label><br>
+		<label>DuckDuckGo  <input type='radio' name='engine' value='duckDuckGo'></label><br>
+		<label>Bing  <input type='radio' name='engine' value='bing'></label><br>
+		<label>Ask  <input type='radio' name='engine' value='ask'></label><br>
+    <!-- TODO: add form elements --><button value='Go!' class="btn btn-primary">Go!</button>
 	</form>
-
+   </div>
 </body>
